@@ -1,0 +1,16 @@
+{
+  "name": "electron-webview-events",
+  "productName": "electron-webview-events",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "kris",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "7.0.0"
+  }
+}

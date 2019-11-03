@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webview Mousemove/Mouseup Issue</title>
+  </head>
+  <body style="margin-left: 10vw; margin-right: 10vw">
+    <h1>Webview Mousemove/Mouseup Issue</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <h4>Webview</h4>
+    <p>
+        Click and drag. Move the mouse outside the bounds, and the drag will stop.
+        Mouseup outside the bounds, and map will still be dragging when you mouseover again.
+
+        Introduced by OOPIF for Webview; issue does not occur with standard iframe.
+    </p>
+    <webview id="webviewElt" style="height: 30vh; width: 70vw" src="./mapbox-webview.html" preload="./webview-preload.js"></webview>
+    <h4><label><input type="checkbox" id="fixEnabledInput"><span>Enable Proposed Fix</span></label></h4>
+    <div>
+        <p>Forward mousemove and mouseup to the webview from the parent when the mouse is down in the webview
+            using webContents.sendInputEvent().</p>
+
+        <p>For pages with more than one webview (e.g. a paned layout like the Electron Fiddle editor),
+            <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=978162">this Chromium bug</a> would probably come into play
+            but similar coordination of events could still fix the issue.</p>
+
+    </div>
+<!--    <h4>Iframe</h4>-->
+<!--    <iframe style="height: 30vh; width: 70vw" src="./mapbox-webview.html"></iframe>-->
+ <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
